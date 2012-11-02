@@ -1,0 +1,11 @@
+<template name="admin_nav">
+    {{#if is_user}}
+        <div class="well admin-navigation">
+            <ul class="nav nav-list">
+                <li class="nav-header">Administration</li>
+                <li class="{{print_active_class "admin_new"}}"><a href="/p" class="internal-link"><i class="icon-pencil"></i> diary entry</a></li>
+            </ul>
+        </div>
+    {{/if}}
+</template>
+       

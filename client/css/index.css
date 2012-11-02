@@ -1,0 +1,135 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 1);
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    border-left: 1px solid rgba(217, 217, 217, 1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: rgba(0, 0, 0, 1);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-y: scroll;
+}
+
+#logo a {
+    color: #333;
+    text-decoration: none;
+}
+
+#administration {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+#signup-link {
+    display: none;
+}
+
+.admin-navigation {
+    padding: 8px 0;
+}
+
+.content > a + a {
+    display: block;
+    margin-top: 80px;
+}
+
+.content  a article,
+.content  a article:hover,
+.content  a:hover {
+    color: #333;
+    text-decoration: none !important;
+}
+
+body > footer {
+    text-align: center;
+    font-size: 11px;
+    padding-top: 40px;
+}
+
+#article-contents {
+    padding-top: 20px;
+}
+
+#article-contents li {
+    margin: 20px 0 20px -25px;
+    position: relative;
+}
+
+#article-contents li + li {
+    margin-top: 40px;
+}
+
+#article-contents li .handle {
+    float: left;
+    cursor: pointer;
+    margin-right: 10px;
+    padding-top: 4px;
+    visibility: hidden;
+}
+
+#article-contents li .delete {
+    display: block;
+    float: right;
+    top: 2px;
+    padding-left: 5px;
+    opacity: 0;
+}
+
+#article-contents li .help {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  font-size: 11px;
+  display: none;
+}
+
+#article-contents li:hover .delete,
+#article-contents li:hover .help {
+    display: block;
+    opacity: 1;
+}
+
+#article-contents li > .editor {
+cursor: text;
+overflow: hidden;
+padding: 2px 4px;
+}
+
+#article-contents li:hover > .editor {
+background: #eee;
+}
+
+#article-contents li:hover > .handle {
+visibility: visible;
+}
+
+#article-contents li.a-new-image .image-dropzone {
+padding-top: 12px;
+text-align: center;
+outline: 2px dashed #ccc;
+}
+
+#article-contents li.a-new-codesnippet {
+font-family: 'Source Code Pro', monospace;
+}
+

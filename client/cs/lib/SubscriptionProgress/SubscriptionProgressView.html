@@ -1,0 +1,12 @@
+<template name="subscription_progress">
+    {{#if has_loading_subscription}}
+    <div class="loading-list">
+        <ul>
+            {{#each items}}
+            <li>{{{hint this}}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+</template>
+

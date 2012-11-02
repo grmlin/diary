@@ -1,0 +1,60 @@
+<template name="entry_create_form">
+    <form>
+        <fieldset>
+            <legend>Mandatory</legend>
+            <label class="control-label" for="title">Title</label>
+            <input type="text" id="title" class="span8" placeholder="enter the main title">
+
+            <label class="control-label" for="subtitle">Subtitle</label>
+            <input type="text" id="subtitle" class="span8" placeholder="enter a subtitle">
+
+            <label class="control-label" for="tags">Tags</label>
+            <input type="text" id="tags" class="span8" placeholder="choose tags">
+            <span class="help-block">Add a comma separated list of tags the entry belongs to</span>
+
+            <label class="control-label" for="intro">Introduction</label>
+            <textarea id="intro" name="intro" class="span8" maxlength="200" rows="4"></textarea>
+            <span class="help-block">The intro text is visible in the list view and emphasized in the article view</span>
+
+            <legend>Content</legend>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a href="#" class="new-paragraph btn btn-small" title="Add new paragraph"><i class="icon-font"></i></a>
+                    <a href="#" class="new-code btn btn-small" title="Add new code-snippet">{ }</a>
+                    <a href="#" class="new-image btn btn-small" title="Add new picture"><i class="icon-picture"></i></a>
+                </div>
+            </div>
+
+            <ul id="article-contents" class="unstyled">
+              <li>{{> paragraph_editor}}</li>
+            </ul>
+            
+        </fieldset>
+    </form>
+</template>
+
+<template name="paragraph_editor">
+    <div class="handle"><i class="icon-move"></i></div>
+    <a class="delete" href="/delete"><i class="icon-trash"></i></a>
+    <div class="help">
+        Markdown supported
+    </div>
+    <div class="editor" contenteditable="true">Lorem ipsum dolor sit amet</div>
+</template>
+        
+<template name="code_editor">
+    <div class="handle"><i class="icon-move"></i></div>
+    <a class="delete" href="#"><i class="icon-trash"></i></a>
+    <div class="editor" contenteditable="true">Code in here</div>
+</template>
+        
+<template name="image_editor">
+    <div class="handle"><i class="icon-move"></i></div>
+    <a class="delete" href="#"><i class="icon-trash"></i></a>
+    <div class="image-dropzone editor">
+        <p>Drag and Drop your image file into here or select one below</p>
+        <p>
+            <input type="file">
+        </p>
+    </div>
+</template>

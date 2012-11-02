@@ -1,0 +1,4 @@
+Publisher =
+  wirePublications: ->
+    
+    

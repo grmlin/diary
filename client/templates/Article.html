@@ -1,0 +1,131 @@
+<template name="article">
+    {{#if show_view "article"}}
+    <div id="article">
+        {{> article_content}}
+    </div>
+    {{/if}}
+</template>
+
+<template name="article_content">
+    <article>
+        {{#if is_user}}
+            {{> article_edit}}
+        {{/if}}
+        <header>
+            <hgroup>
+                <h3>Windows Phone touch events
+                    <small>Subtext for header</small>
+                </h3>
+                <h4>
+                    <small>andreas</small>
+                    Oct 27, 2012
+                </h4>
+            </hgroup>
+        </header>
+        <section>
+            <p class="lead">Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus
+                to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks.
+                Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the
+                motherfucker, know what I'm sayin'?</p>
+<pre><code class="code-view javascript"><code class="code-view javascript">(<span class="keyword">function</span>() {
+    <span class="keyword">var</span> suppress = <span class="number">0</span>;
+
+    <span class="comment">// replacement for console.log. This is a temporary API. We should</span>
+    <span class="comment">// provide a real logging API soon (possibly just a polyfill for</span>
+    <span class="comment">// console?)</span>
+    <span class="comment">//</span>
+    <span class="comment">// NOTE: this is used on the server to print the warning about</span>
+    <span class="comment">// having autopublish enabled when you probably meant to turn it</span>
+    <span class="comment">// off. it's not really the proper use of something called</span>
+    <span class="comment">// _debug. the intent is for this message to go to the terminal and</span>
+    <span class="comment">// be very visible. if you change _debug to go someplace else, etc,</span>
+    <span class="comment">// please fix the autopublish code to do something reasonable.</span>
+    Meteor._debug = <span class="function"><span class="keyword">function</span> <span class="params">(<span
+            class="comment">/* arguments */</span>)</span> {</span>
+    <span class="keyword">if</span> (suppress) {
+    suppress--;
+    <span class="keyword">return</span>;
+    }
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> console !== <span
+            class="string">'undefined'</span> &amp;&amp;
+    <span class="keyword">typeof</span> console.log !== <span class="string">'undefined'</span>) {
+    <span class="keyword">if</span> (arguments.length == <span class="number">0</span>) { <span class="comment">// IE Companion breaks otherwise</span>
+    <span class="comment">// IE10 PP4 requires at least one argument</span>
+    console.log(<span class="string">''</span>);
+    } <span class="keyword">else</span> {
+    <span class="comment">// IE doesn't have console.log.apply, it's not a real Object.</span>
+    <span class="comment">// http://stackoverflow.com/questions/5538972/console-log-apply-not-working-in-ie9</span>
+    <span class="comment">// http://patik.com/blog/complete-cross-browser-console-log/</span>
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> console.log.apply === <span class="string">"function"</span>)
+    {
+    <span class="comment">// Most browsers</span>
+    console.log.apply(console, arguments);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>
+    Function.prototype.bind === <span class="string">"function"</span>) {
+    <span class="comment">// IE9</span>
+    <span class="keyword">var</span> log = Function.prototype.bind.call(console.log, console);
+    log.apply(console, arguments);
+    } <span class="keyword">else</span> {
+    <span class="comment">// IE8</span>
+    Function.prototype.call.call(console.log, console, Array.prototype.slice.call(arguments));
+    }
+    }
+    }
+    };
+
+    <span class="comment">// Suppress the next 'count' Meteor._debug messsages. Use this to</span>
+    <span class="comment">// stop tests from spamming the console.</span>
+    Meteor._suppress_log = <span class="function"><span class="keyword">function</span> <span
+            class="params">(count)</span> {</span>
+    suppress += count;
+    };
+    })();
+</code></code></pre>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis varius orci non placerat.
+                Vivamus nisl lectus, mollis id feugiat vitae, fringilla quis metus. Praesent molestie nibh libero, in
+                rhoncus massa. Duis a orci nisi. Donec congue tempus velit nec laoreet. In sapien purus, lobortis eget
+                volutpat sit amet, interdum quis justo. Pellentesque vestibulum arcu nisl. Nunc est tellus, suscipit nec
+                sodales eu, feugiat eget diam. Nam mollis scelerisque odio nec porttitor. Proin sit amet lacus ut magna
+                euismod auctor. In lorem erat, aliquet ac convallis in, ultricies quis orci. Nullam suscipit lacinia
+                risus a egestas. Nulla et ante sit amet arcu congue imperdiet sed in lacus. Integer tortor dolor,
+                tincidunt a sagittis posuere, hendrerit sit amet leo. Suspendisse nec elit nec lorem pretium facilisis.
+                Etiam velit purus, sodales et interdum id, gravida nec velit.</p>
+
+            <p>Sed venenatis sagittis ultrices. Vivamus leo urna, tincidunt non interdum sed, iaculis sit amet eros.
+                Quisque interdum adipiscing convallis. Cras a posuere libero. Ut est mauris, pulvinar et semper et,
+                aliquet ullamcorper nulla. Ut venenatis nibh et lacus rutrum quis luctus dui sodales. Nam in augue
+                risus. Ut congue ligula velit. Donec rutrum ultricies metus id interdum. Vivamus sagittis, nulla sit
+                amet volutpat porta, leo mauris sagittis arcu, iaculis facilisis ipsum eros et nisl. Nam imperdiet lorem
+                nec lectus vulputate non tristique enim fringilla. Cras mi massa, ultricies et laoreet a, bibendum a
+                velit. Donec ut mi non lorem rhoncus commodo vel vel felis. Curabitur sodales nunc eros.</p>
+
+            <p>Aenean felis justo, malesuada ac laoreet non, ullamcorper in nisl. Phasellus convallis porta fermentum.
+                Duis euismod est vel velit hendrerit fringilla. Duis pellentesque, dolor eu interdum sollicitudin, nulla
+                turpis viverra risus, elementum dignissim tellus nisl sed orci. In eleifend, felis non lobortis
+                pellentesque, velit odio consectetur erat, sit amet ullamcorper dui elit ac libero. Etiam vestibulum sem
+                sit amet sapien gravida rutrum. Morbi at libero ante. Donec tempus cursus urna, nec porttitor velit
+                consectetur eget.</p>
+
+            <p>Nulla quam tortor, laoreet non interdum et, eleifend vel ante. Proin at augue mi, ut accumsan quam.
+                Vivamus mattis rhoncus ligula, vitae facilisis est venenatis non. Suspendisse placerat, magna vitae
+                adipiscing aliquam, metus nunc luctus mauris, vel vehicula neque enim sed dui. Sed lobortis aliquet
+                lectus, placerat egestas sapien feugiat ac. Praesent dignissim ligula eu libero viverra dignissim nec eu
+                turpis. Pellentesque ut quam mi, et vulputate mauris. Proin augue purus, rutrum vitae malesuada sed,
+                vulputate at quam. Aenean adipiscing tincidunt ligula a pellentesque. Vivamus sed nisi elit, eu auctor
+                arcu. Sed ac nibh nec neque gravida egestas et in turpis. In hac habitasse platea dictumst.</p>
+
+            <p>Donec nisl massa, venenatis vel porta non, cursus in augue. Quisque molestie luctus justo, in tincidunt
+                odio pharetra nec. Ut vitae purus turpis. Nulla aliquam dictum sapien non suscipit. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque fermentum ullamcorper
+                libero vel pulvinar. Sed porta eleifend interdum.</p>
+
+        </section>
+    </article>
+</template>
+        
+        <template name="article_edit">
+            <div class="pull-right">
+                <a class="btn btn-mini" href="#"><i class="icon-pencil"></i></a>
+            </div>
+        </template>
