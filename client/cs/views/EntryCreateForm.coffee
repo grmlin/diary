@@ -4,5 +4,7 @@ Template.entry_create_form.rendered = ->
     forcePlaceholderSize: true
     helper: "clone"
 
+    
+Template.entry_create_form.events
 
 

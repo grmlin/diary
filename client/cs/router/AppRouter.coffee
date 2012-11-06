@@ -23,6 +23,7 @@ AppRouter = Backbone.Router.extend
   article: (article) ->
     Meteor._debug("/article/#{article}")
     appState.setState(appState.ARTICLE)
+    appState.setSelectedArticleSlug(article)
 
   produce: ->
     Meteor._debug("/produce")

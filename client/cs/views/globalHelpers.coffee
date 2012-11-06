@@ -9,3 +9,6 @@ Handlebars.registerHelper 'show_login', () ->
   
 Handlebars.registerHelper 'is_user', () ->
   Meteor.userId() isnt null
+  
+Handlebars.registerHelper 'datestring', (time) ->
+    moment(time).format("MMMM Do YYYY")

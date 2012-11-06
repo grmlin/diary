@@ -1,35 +1,31 @@
 <template name="list">
     {{#if show_view "list"}}
     <div id="list">
+        {{#each articles}}
         {{> article_abstract}}
-        {{> article_abstract}}
-        {{> article_abstract}}
-        {{> article_abstract}}
-        {{> article_abstract}}
-        {{> article_abstract}}
+        {{/each}}
     </div>
     {{/if}}
 </template>
 
 
 <template name="article_abstract">
-    <a href="/a/123" class="internal-link">
+    <a href="/a/{{slug}}" class="internal-link">
         <article>
             <header>
                 <hgroup>
-                    <h3>Windows Phone touch events
-                        <small>Subtext for header</small>
+                    <h3>{{title}}
+                        <small>{{subtitle}}</small>
                     </h3>
-                    <h4>
-                        <small>andreas</small>
-                        Oct 27, 2012
-                    </h4>
+                    <h6>
+                        {{user_name}}
+                        <small>{{datestring time}}</small>
+                    </h6>
                 </hgroup>
                 <section>
-                    <p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus
-                        to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks.
-                        Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the
-                        motherfucker, know what I'm sayin'?</p>
+                    <div>
+                        {{#markdown}}{{intro}}{{/markdown}}
+                    </div>
                 </section>
             </header>
         </article>

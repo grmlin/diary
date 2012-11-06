@@ -3,18 +3,19 @@
         <fieldset>
             <legend>Mandatory</legend>
             <label class="control-label" for="title">Title</label>
-            <input type="text" id="title" class="span8" placeholder="enter the main title">
+            <input type="text" id="title" name="title" class="span8" placeholder="enter the main title" required="required">
 
             <label class="control-label" for="subtitle">Subtitle</label>
-            <input type="text" id="subtitle" class="span8" placeholder="enter a subtitle">
+            <input type="text" id="subtitle" name="subtitle" class="span8" placeholder="enter a subtitle">
 
             <label class="control-label" for="tags">Tags</label>
-            <input type="text" id="tags" class="span8" placeholder="choose tags">
+            <input type="text" id="tags" name="tags" class="span8" placeholder="choose tags" required="required">
             <span class="help-block">Add a comma separated list of tags the entry belongs to</span>
 
-            <label class="control-label" for="intro">Introduction</label>
-            <textarea id="intro" name="intro" class="span8" maxlength="200" rows="4"></textarea>
-            <span class="help-block">The intro text is visible in the list view and emphasized in the article view</span>
+            <label class="control-label" for="intro">Introduction <small><em>Markdown allowed</em></small></label>
+            <textarea id="intro" name="intro" class="span8" maxlength="200" rows="4" required="required"></textarea>
+            <span class="help-block">The intro text is visible in the list view and emphasized in the article view.
+            </span>
 
             <legend>Content</legend>
             <div class="btn-toolbar">
@@ -25,10 +26,12 @@
                 </div>
             </div>
 
-            <ul id="article-contents" class="unstyled">
-              <li>{{> paragraph_editor}}</li>
+            <ul id="article-contents" class="unstyled dynamic-content">
             </ul>
-            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn">Cancel</button>
+            </div>
         </fieldset>
     </form>
 </template>
@@ -36,16 +39,14 @@
 <template name="paragraph_editor">
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="/delete"><i class="icon-trash"></i></a>
-    <div class="help">
-        Markdown supported
-    </div>
-    <div class="editor" contenteditable="true">Lorem ipsum dolor sit amet</div>
+    <div class="editor"><textarea placeholder="Add your content (Markdown allowed)"></textarea></div>
 </template>
         
 <template name="code_editor">
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="#"><i class="icon-trash"></i></a>
-    <div class="editor" contenteditable="true">Code in here</div>
+    {{> language_dropdown}}
+    <div class="editor"><textarea placeholder="Add your code snippet"></textarea></div>
 </template>
         
 <template name="image_editor">
@@ -54,7 +55,7 @@
     <div class="image-dropzone editor">
         <p>Drag and Drop your image file into here or select one below</p>
         <p>
-            <input type="file">
+            <input type="file" accept="image/*">
         </p>
     </div>
 </template>
