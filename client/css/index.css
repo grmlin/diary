@@ -29,6 +29,9 @@ body {
     overflow-y: scroll;
 }
 
+.clear {
+    clear: both;
+}
 #logo a {
     color: #333;
     text-decoration: none;

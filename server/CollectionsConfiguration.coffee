@@ -15,6 +15,20 @@ do ->
 
       userId and doc.title and doc.tags.length > 0 and doc.intro
 
-    update: (userId, doc) ->
+    update: (userId, docs, fields, modifier) ->
+      console.log "Updating article"
+      mod = modifier.$set
       # the user must be logged in
-      userId
+      console.log userId
+      console.log docs
+      console.log fields
+      console.log modifier.$set
+
+      userId and mod.title and mod.tags.length > 0 and mod.intro
+
+  Meteor.methods
+    getArticleSlug: (id) ->
+      a = Articles.findOne(id)
+      throw new Meteor.Error(500, "Article does not exist") unless a
+      
+      return a.slug

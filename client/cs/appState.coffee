@@ -6,6 +6,7 @@ appState = do() ->
     TAG       : "tag"
     ARTICLE   : "article"
     ADMIN_NEW : "admin_new"
+    ADMIN_EDIT : "admin_edit"
     ADMIN     : "admin"
     
     setState: (state) ->
@@ -27,7 +28,8 @@ appState = do() ->
   appState.setState(null)
 
   Meteor.autorun ->
-    Session.set('SELECTED_ARTICLE', null) if not appState.isState(appState.ARTICLE)
+    state = appState.getState()
+    appState.setSelectedArticleSlug(null) if state isnt appState.ARTICLE and state isnt appState.ADMIN_EDIT
 
   return appState
   

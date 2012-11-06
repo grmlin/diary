@@ -3,7 +3,8 @@ AppRouter = Backbone.Router.extend
     "l": "list"
     "t/:tag": "tag"
     "a/:article": "article"
-    "p": "produce",
+    "p": "produce"
+    "p/:article": "produceExisting"
     "login": "login"
   
   initialize: ->
@@ -28,7 +29,17 @@ AppRouter = Backbone.Router.extend
   produce: ->
     Meteor._debug("/produce")
     appState.setState(appState.ADMIN_NEW)
+
+  produceExisting: (article) ->
+    Meteor._debug("/article/#{article}")
+    appState.setState(appState.ADMIN_EDIT)
+    appState.setSelectedArticleSlug(article)
     
   login: ->
     Session.set "show_login", true
     appState.setState(appState.LIST)
+
+  openArticle: (id) ->
+    Meteor.call "getArticleSlug", id, (err, slug) =>
+      @navigate("/a/#{slug}", trigger: true) if err is undefined
+      Meteor._debug("Couldn't open article #{id}", err) if err

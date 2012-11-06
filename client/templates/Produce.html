@@ -1,5 +1,5 @@
 <template name="produce">
-    {{#if show_view "admin_new"}}
+    {{#if show_view "admin_new,admin_edit"}}
     {{#if is_user}}
     {{> entry_create_form}}
     {{else}}

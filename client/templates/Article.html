@@ -7,11 +7,11 @@
 </template>
 
 <template name="article_content">
+    {{#with current_article}}
     <article>
         {{#if is_user}}
         {{> article_edit}}
         {{/if}}
-        {{#with current_article}}
         <header>
             <hgroup>
                 <h3>{{title}}
@@ -31,8 +31,8 @@
                 {{/each}}
             </div>
         </section>
-        {{/with}}
     </article>
+    {{/with}}
 </template>
 
 <template name="article:paragraph">
@@ -41,6 +41,6 @@
 
 <template name="article_edit">
     <div class="pull-right">
-        <a class="btn btn-mini" href="#"><i class="icon-pencil"></i></a>
+        <a class="btn btn-mini internal-link" href="/p/{{slug}}"><i class="icon-pencil"></i></a>
     </div>
 </template>

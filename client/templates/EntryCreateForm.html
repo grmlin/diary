@@ -1,19 +1,40 @@
 <template name="entry_create_form">
+    {{#with current_article}}
     <form>
+        <div class="alert alert-info">
+            {{#if this}}
+            <h4>Edit article</h4>
+            <input type="hidden" name="edit_id" value="{{_id}}">
+            {{else}}
+            <h4>Create article</h4>
+            {{/if}}
+        </div>
         <fieldset>
             <legend>Mandatory</legend>
             <label class="control-label" for="title">Title</label>
-            <input type="text" id="title" name="title" class="span8" placeholder="enter the main title" required="required">
-
-            <label class="control-label" for="subtitle">Subtitle</label>
-            <input type="text" id="subtitle" name="subtitle" class="span8" placeholder="enter a subtitle">
+            <input type="text" id="title" name="title" class="span8" placeholder="enter the main title"
+                   required="required" value="{{title}}">
+            {{#if this}}
+            <div class="alert pull-left">
+                <strong>Be careful!</strong>
+               Changing the title will change the article's url!
+            </div>
+            {{/if}}
+            
+            <label class="control-label clear" for="subtitle">Subtitle</label>
+            <input type="text" id="subtitle" name="subtitle" class="span8" placeholder="enter a subtitle"
+                   value="{{subtitle}}">
 
             <label class="control-label" for="tags">Tags</label>
-            <input type="text" id="tags" name="tags" class="span8" placeholder="choose tags" required="required">
+            <input type="text" id="tags" name="tags" class="span8" placeholder="choose tags" required="required"
+                   value="{{tags}}">
             <span class="help-block">Add a comma separated list of tags the entry belongs to</span>
 
-            <label class="control-label" for="intro">Introduction <small><em>Markdown allowed</em></small></label>
-            <textarea id="intro" name="intro" class="span8" maxlength="200" rows="4" required="required"></textarea>
+            <label class="control-label" for="intro">Introduction
+                <small><em>Markdown allowed</em></small>
+            </label>
+            <textarea id="intro" name="intro" class="span8" maxlength="200" rows="4"
+                      required="required">{{intro}}</textarea>
             <span class="help-block">The intro text is visible in the list view and emphasized in the article view.
             </span>
 
@@ -27,6 +48,9 @@
             </div>
 
             <ul id="article-contents" class="unstyled dynamic-content">
+                {{#each dynamic_content}}
+                {{{get_content this}}}
+                {{/each}}
             </ul>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Save changes</button>
@@ -34,26 +58,30 @@
             </div>
         </fieldset>
     </form>
+    {{/with}}
 </template>
 
 <template name="paragraph_editor">
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="/delete"><i class="icon-trash"></i></a>
-    <div class="editor"><textarea placeholder="Add your content (Markdown allowed)"></textarea></div>
+
+    <div class="editor"><textarea placeholder="Add your content (Markdown allowed)">{{content}}</textarea></div>
 </template>
-        
+
 <template name="code_editor">
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="#"><i class="icon-trash"></i></a>
     {{> language_dropdown}}
-    <div class="editor"><textarea placeholder="Add your code snippet"></textarea></div>
+    <div class="editor"><textarea placeholder="Add your code snippet">{{content}}</textarea></div>
 </template>
-        
+
 <template name="image_editor">
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="#"><i class="icon-trash"></i></a>
+
     <div class="image-dropzone editor">
         <p>Drag and Drop your image file into here or select one below</p>
+
         <p>
             <input type="file" accept="image/*">
         </p>
