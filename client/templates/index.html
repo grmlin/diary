@@ -16,16 +16,11 @@
     <div class="row-fluid clearfix">
         <aside class="span2">
             {{> admin_nav}}
+
             <h4>Tags</h4>
-            <form class="form-search">
-                <input type="search" class="span12 search-query" placeholder="search">
-            </form>
-            <p>
-                <a class="label label-inverse" href="#">meteor</a>
-                <a class="label label-inverse" href="#">ember</a>
-                <a class="label label-inverse" href="#">css</a>
-                <a class="label label-inverse" href="#">html</a>
-                <a class="label label-inverse" href="#">javascript</a>
+
+            <p class="tags">
+                {{> tags}}
             </p>
         </aside>
         <section class="content span7 offset1">

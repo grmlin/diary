@@ -1,5 +1,11 @@
 <template name="list">
+    {{#if show_view "list,tag"}}
+
     {{#if show_view "list"}}
+    <!--<h2 class="page-header">available articles</h2>-->
+    {{else}}
+    <h2 class="page-header">articles tagged with <span class="label label-inverse">{{tagname}}</span></h2>
+    {{/if}}
     <div id="list">
         {{#each articles}}
         {{> article_abstract}}
@@ -14,13 +20,18 @@
         <article>
             <header>
                 <hgroup>
-                    <h3>{{title}}
-                        <small>{{subtitle}}</small>
-                    </h3>
                     <h6>
                         {{user_name}}
                         <small>{{datestring time}}</small>
                     </h6>
+                    <h3>{{title}}
+                        <small>{{subtitle}}</small>
+                    </h3>
+                    <p>
+                        {{#each tags}}
+                            <span class="label label-inverse internal-link">{{this}}</span>
+                        {{/each}}
+                    </p>
                 </hgroup>
                 <section>
                     <div>

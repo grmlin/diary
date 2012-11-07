@@ -78,6 +78,11 @@ body {
     text-decoration: none !important;
 }
 
+h2.page-header .label {
+    font-size: 30px;
+    padding: 0 4px 4px;
+}
+
 #list article header hgroup {
     margin-bottom: 10px;
 }
@@ -121,6 +126,9 @@ body > footer {
     list-style: none;
 }
 
+p.tags {
+    text-align: justify;
+}
 #article-contents {
     padding-top: 20px;
     margin-bottom: 40px;

@@ -1,7 +1,8 @@
 Publisher =
   wirePublications: ->
-    Meteor.publish "articles_list", (nPerPage) ->
-      articles = Articles.find({},
+    Meteor.publish "articles_list", (nPerPage, tag) ->
+      selector = if tag then {tags: tag } else {}
+      articles = Articles.find(selector,
         {
         fields:
           dynamic_content: no
@@ -11,13 +12,14 @@ Publisher =
         }
 
       )
-      Meteor._debug "Publishing #{articles.count()} Articles (max #{nPerPage})"
       return articles
 
     Meteor.publish "article_selected", (slug) ->
       if slug
         articles = Articles.find({slug: slug})
-        Meteor._debug "Publishing #{articles.count()} Articles for slug #{slug}"
         return articles
       else
         return null
+        
+    Meteor.publish "tags", ->
+      Tags.find()

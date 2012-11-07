@@ -1,5 +1,5 @@
 ArticlesPagination = do ->
-  LAZY_OFFSET = 200
+  LAZY_OFFSET = 300
   $win = $(window)
   $doc = $(document)
 
@@ -16,7 +16,9 @@ ArticlesPagination = do ->
       super("Articles", ArticlesPagination.getCountOptions, ArticlesPagination.N_PER_PAGE)
 
       progress.addSubscription (subscribe) =>
-        subscribe 'articles_list', @_getNPerPage(), =>
+        currentTag = appState.getSelectedTag()
+        console.log "Updating articles #{currentTag}"
+        subscribe 'articles_list', @_getNPerPage(), currentTag, =>
           Meteor._debug "Fetchted #{Articles.find().count()} Articles"
 
       progress.addSubscription (subscribe) =>

@@ -20,6 +20,7 @@ AppRouter = Backbone.Router.extend
   tag: (tag) ->
     Meteor._debug("/tag/#{tag}")
     appState.setState(appState.TAG)
+    appState.setSelectedTag(tag)
 
   article: (article) ->
     Meteor._debug("/article/#{article}")

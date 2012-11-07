@@ -6,6 +6,8 @@ do ->
         time: -1
       })
 
+    tagname: ->
+      appState.getSelectedTag()
 
   Template.list.rendered = ->
     if appState.isState(appState.LIST)
