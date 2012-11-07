@@ -8,7 +8,6 @@ do ->
     
   Template.entry_create_form.helpers
     get_content: (content) ->
-      console.dir content
       c = ""
       switch content.type
         when "paragraph"
@@ -31,7 +30,6 @@ do ->
       evt.preventDefault()
       li = event.currentTarget.parentNode
       ul = li.parentNode
-      console.log(li, ul)
       evt.currentTarget.parentElement.parentElement.removeChild(evt.currentTarget.parentElement)
   
     "click .new-paragraph": (evt) ->

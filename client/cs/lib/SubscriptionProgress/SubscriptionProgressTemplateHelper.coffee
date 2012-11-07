@@ -13,7 +13,6 @@ class SubscriptionProgressTemplateHelper
         hint: (item) =>
           result = item
           name = "subscription_progress:#{item}"
-
           if typeof Template[name] is "function"
             result = Template[name]()
 

@@ -25,8 +25,8 @@ class AbstractPagination
       
   _fetchCount: =>
     Meteor.call("getCollectionCount", @collectionName, @countOptionsCb(), (err, res) =>
-      console?.error(err) if err
-      console?.log "#{@collectionName} has #{res} items"
+      Meteor._debug(err) if err
+      Meteor._debug "#{@collectionName} has #{res} items"
       Session.set @sessionCountKey, res
     )
     

@@ -31,7 +31,7 @@ AppRouter = Backbone.Router.extend
     appState.setState(appState.ADMIN_NEW)
 
   produceExisting: (article) ->
-    Meteor._debug("/article/#{article}")
+    Meteor._debug("/edit/#{article}")
     appState.setState(appState.ADMIN_EDIT)
     appState.setSelectedArticleSlug(article)
     

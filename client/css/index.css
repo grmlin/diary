@@ -32,6 +32,7 @@ body {
 .clear {
     clear: both;
 }
+
 #logo a {
     color: #333;
     text-decoration: none;
@@ -93,6 +94,31 @@ body > footer {
     text-align: center;
     font-size: 11px;
     padding-top: 40px;
+}
+
+.loading-list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 21;
+    font-size: 12px;
+    display: none;
+}
+
+.loading-list ul {
+    display: inline-block;
+    background: rgb(140, 140, 140);
+    color: #ffffff;
+    padding: 2px 4px;
+    -webkit-box-shadow: 0, 0, 4px, rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0, 0, 4px, rgba(0, 0, 0, 0.2);
+    box-shadow: 0, 0, 4px, rgba(0, 0, 0, 0.2);
+}
+
+.loading-list ul li {
+    list-style: none;
 }
 
 #article-contents {

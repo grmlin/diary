@@ -1,10 +1,10 @@
 appRouter = new AppRouter()
 progress = new SubscriptionProgress()
 progressView = new SubscriptionProgressTemplateHelper(progress)
-articlesPagination = null
+
+articlesPagination = new ArticlesPagination()
 
 Meteor.startup ->
-  articlesPagination = new ArticlesPagination()
 
   Accounts.ui.config
     passwordSignupFields: 'USERNAME_ONLY'

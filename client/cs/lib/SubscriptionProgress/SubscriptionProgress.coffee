@@ -48,7 +48,7 @@ SubscriptionProgress = do ->
       return isLoading
 
     isSubscriptionLoading: (name) ->
-      @_getLoadState name
+      @_getLoadState(name) is true
 
     getLoadingItems: ->
       items = []
@@ -75,10 +75,10 @@ SubscriptionProgress = do ->
 
     _onBeforeLoad: (name) ->
       @_setLoadState name, true
-      #console?.log "####LOADER#### Subscription \"#{name}\" loads new data now "
+      #Meteor._debug "####LOADER#### Subscription \"#{name}\" loads new data now "
 
     _onLoadComplete: (name) =>
-      Meteor._debug "<SubscriptionProgress> #{name} loaded "
+      #Meteor._debug "<SubscriptionProgress> #{name} loaded "
 
       @_setLoadState name, false
       
@@ -86,4 +86,4 @@ SubscriptionProgress = do ->
         @_firstLoadFinished = yes
         @_firstLoadCallback?.call(this)
       
-      #console?.log "####LOADER#### Subscription \"#{name}\" was sucessfully refreshed "
+      #Meteor._debug "####LOADER#### Subscription \"#{name}\" was sucessfully refreshed "

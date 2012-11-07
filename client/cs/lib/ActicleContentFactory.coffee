@@ -9,17 +9,17 @@ ArticleContentFactory =
     switch node.className
 
       when "a-new-codesnippet"
-        console.log "codesnippet"
+        Meteor._debug.log "codesnippet"
 
       when "a-new-paragraph"
-        console.log "a-new-paragraph"
+        Meteor._debug.log "a-new-paragraph"
         content = new Paragraph(node)
 
       when "a-new-image"
-        console.log "a-new-image"
+        Meteor._debug.log "a-new-image"
         content = new BlockImage(node)
                                             
       else
-        console.log "wtf"   
+        Meteor._debug.log "wtf"   
         
     return content
