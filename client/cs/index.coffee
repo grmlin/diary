@@ -7,9 +7,11 @@ articlesPagination = new ArticlesPagination(progress)
 Meteor.startup ->
 
   Accounts.ui.config
-    passwordSignupFields: 'USERNAME_ONLY'
-
-
+    passwordSignupFields: 'USERNAME_AND_EMAIL'
+    
+  Accounts.config
+    forbidClientAccountCreation: true
+    
   progress.addSubscription (subscribe) =>
     subscribe 'tags'
         

@@ -1,6 +1,4 @@
 Meteor.startup ->
-  Accounts.config
-    forbidClientAccountCreation: true
-  
+  Bootstrap.boot()
   
   Publisher.wirePublications()
