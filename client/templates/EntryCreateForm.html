@@ -15,12 +15,12 @@
             <input type="text" id="title" name="title" class="span8" placeholder="enter the main title"
                    required="required" value="{{title}}">
             {{#if this}}
-            <div class="alert pull-left">
-                <strong>Be careful!</strong>
-               Changing the title will change the article's url!
+            <div class="alert alert-block">
+                <strong>Remember!</strong>
+                Changing the title will <strong>not</strong> change the article's original url!
             </div>
             {{/if}}
-            
+
             <label class="control-label clear" for="subtitle">Subtitle</label>
             <input type="text" id="subtitle" name="subtitle" class="span8" placeholder="enter a subtitle"
                    value="{{subtitle}}">
@@ -75,13 +75,18 @@
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="#"><i class="icon-trash"></i></a>
     {{> language_dropdown}}
-    <div class="editor"><textarea placeholder="Add your code snippet">{{content}}</textarea></div>
+    <div class="editor"><textarea placeholder="Add your code snippet">{{content.code}}</textarea></div>
 </template>
 
 <template name="image_editor">
     <div class="handle"><i class="icon-move"></i></div>
     <a class="delete" href="#"><i class="icon-trash"></i></a>
 
+    {{#if content}}
+    <div class="editor">
+        {{#markdown}}{{content}}{{/markdown}}
+    </div>
+    {{else}}
     <div class="image-dropzone editor">
         <p>Drag and Drop your image file into here or select one below</p>
 
@@ -89,4 +94,5 @@
             <input type="file" accept="image/*">
         </p>
     </div>
+    {{/if}}
 </template>

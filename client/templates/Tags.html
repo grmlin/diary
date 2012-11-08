@@ -1,9 +1,9 @@
 <template name="tags">
     {{#each tags}}
-        {{#if is_current name}}
-            <a class="label label-inverse internal-link" href="/l">{{name}}</a>
+        {{#if is_current slug}}
+            <a class="label label-inverse internal-link active" href="/t/{{slug}}">{{name}}</a>
         {{else}}
-            <a class="label {{active_class name}} internal-link" href="/t/{{name}}">{{name}}</a>
+            <a class="label {{active_class name}} internal-link" href="/t/{{slug}}">{{name}}</a>
         {{/if}}
     {{/each}}
 </template>

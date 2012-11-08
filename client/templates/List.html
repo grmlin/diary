@@ -4,7 +4,11 @@
     {{#if show_view "list"}}
     <!--<h2 class="page-header">available articles</h2>-->
     {{else}}
-    <h2 class="page-header">articles tagged with <span class="label label-inverse">{{tagname}}</span></h2>
+    <h4 class="page-header">articles tagged with 
+        {{#each current_tags}}
+        <span class="label label-inverse large-label">{{name}}</span>
+        {{/each}}
+    </h4>
     {{/if}}
     <div id="list">
         {{#each articles}}
@@ -27,11 +31,6 @@
                     <h3>{{title}}
                         <small>{{subtitle}}</small>
                     </h3>
-                    <p>
-                        {{#each tags}}
-                            <span class="label label-inverse internal-link">{{this}}</span>
-                        {{/each}}
-                    </p>
                 </hgroup>
                 <section>
                     <div>

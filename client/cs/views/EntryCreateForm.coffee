@@ -16,9 +16,17 @@ do ->
         when "image"
           c = "<li class='a-new-image'>#{Template.image_editor(content)}</li>"
       
+        when "code"
+          c = "<li class='a-new-codesnippet' data-current='#{content.content.type}'>#{Template.code_editor(content)}</li>"
       c
   
   Template.entry_create_form.rendered = ->
+    this.findAll('.dynamic-content li').forEach((li) ->
+      current = li.getAttribute('data-current')
+      dropdown = new LangDropdown($(li).find('.language-toggle'), current)
+      $(li).data("LangDropdown",dropdown)
+    )
+    
     $('#article-contents').sortable
       handle: ".handle"
       forcePlaceholderSize: true
@@ -45,9 +53,7 @@ do ->
       document.getElementById('article-contents').appendChild(editable)
   
       dropdown = new LangDropdown($(editable.querySelector('.language-toggle')))
-      dropdown.onLangChanged = (langDescription) =>
-        #id = Messages.findOne({short_id:Session.get(SESSION_SHORT_MESSAGE_ID)})?._id
-        #messagesController.updateMessageType(id,dropdown.getLang())
+      $(editable).data("LangDropdown",dropdown)
   
     "click .new-image": (evt) ->
       evt.preventDefault()

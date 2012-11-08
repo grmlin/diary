@@ -10,6 +10,7 @@ ArticleContentFactory =
 
       when "a-new-codesnippet"
         Meteor._debug "codesnippet"
+        content = new Code(node)
 
       when "a-new-paragraph"
         Meteor._debug "a-new-paragraph"

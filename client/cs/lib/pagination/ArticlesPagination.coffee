@@ -16,9 +16,9 @@ ArticlesPagination = do ->
       super("Articles", ArticlesPagination.getCountOptions, ArticlesPagination.N_PER_PAGE)
 
       progress.addSubscription (subscribe) =>
-        currentTag = appState.getSelectedTag()
-        console.log "Updating articles #{currentTag}"
-        subscribe 'articles_list', @_getNPerPage(), currentTag, =>
+        currentTagSlugs = appState.getSelectedTagSlugs() ? null
+        console.log "Updating articles #{currentTagSlugs}"
+        subscribe 'articles_list', @_getNPerPage(), currentTagSlugs, =>
           Meteor._debug "Fetchted #{Articles.find().count()} Articles"
 
       progress.addSubscription (subscribe) =>

@@ -4,7 +4,7 @@ Handlebars.registerHelper 'show_view', (viewNames) ->
   names.forEach((name) ->
     show = yes if appState.isState(name)
   )
-  
+
   return show
 
 Handlebars.registerHelper 'print_active_class', (viewName) ->
@@ -24,3 +24,8 @@ Handlebars.registerHelper 'current_article', ->
   if slug
     a = Articles.findOne({slug: slug})
     return a
+
+Handlebars.registerHelper 'current_tags', ->
+  Tags.find
+    slug:
+      $in: appState.getSelectedTagSlugs() 

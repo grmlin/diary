@@ -1,5 +1,5 @@
 class LangDropdown 
-  constructor: (@toggle) ->
+  constructor: (@toggle, selected = null) ->
     
     @button = @toggle.prev()
     @list = @toggle.next()
@@ -8,6 +8,9 @@ class LangDropdown
     @toggle.dropdown()
 
     @list.on 'click', 'li:not(.active) a', @_onLangSelect
+    
+    unless selected is null
+      @list.find("li a[data-val=#{selected}]").click()
     
   _onLangSelect: (evt) =>
     evt.preventDefault()

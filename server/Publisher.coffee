@@ -1,7 +1,15 @@
 Publisher =
   wirePublications: ->
-    Meteor.publish "articles_list", (nPerPage, tag) ->
-      selector = if tag then {tags: tag } else {}
+    Meteor.publish "articles_list", (nPerPage, currentTagSlugs) ->
+      selector = {}
+      if currentTagSlugs
+        tags = Tags.find({slug:{$in:currentTagSlugs}})
+        tagNames = []
+        tags.forEach (tag) ->
+          tagNames.push(tag.name)
+        selector = {tags: {$in : tagNames} }
+        
+        
       articles = Articles.find(selector,
         {
         fields:

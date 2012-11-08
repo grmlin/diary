@@ -12,15 +12,15 @@
         {{#if is_user}}
         {{> article_edit}}
         {{/if}}
-        <header>
+        <header class="page-header">
             <hgroup>
-                <h2>{{title}}
-                    <small>{{subtitle}}</small>
-                </h2>
                 <h6>
                     {{user_name}}
                     <small>{{datestring time}}</small>
                 </h6>
+                <h2>{{title}}
+                    <small>{{subtitle}}</small>
+                </h2>
             </hgroup>
         </header>
         <section>
@@ -31,12 +31,28 @@
                 {{/each}}
             </div>
         </section>
+        <hr>
+        <footer>
+            <p>
+                {{#each tags}}
+                <span class="label label-inverse">{{this}}</span>
+                {{/each}}
+            </p>
+        </footer>
     </article>
     {{/with}}
 </template>
 
 <template name="article:paragraph">
     {{#markdown}}{{content}}{{/markdown}}
+</template>
+        
+<template name="article:image">
+    {{#markdown}}{{content}}{{/markdown}}
+</template>
+
+<template name="article:code">
+    <pre class="prettyprint"><code class="{{content.type}}">{{content.code}}</code></pre>
 </template>
 
 <template name="article_edit">
