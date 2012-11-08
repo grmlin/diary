@@ -38,6 +38,8 @@ do ->
       doc.time = (new Date()).getTime()
       doc.user_name = Meteor.users.findOne(userId)?.username
       doc.slug = getArticleSlug(slugify(doc.title))
+      doc.is_archived = false
+      
       if doc.tags
         doc.tags.forEach (tag, i) ->
           doc.tags[i] = _.string.trim(tag)

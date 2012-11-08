@@ -1,16 +1,8 @@
 Bootstrap = do ->
   BOOTSTRAP_CONFIG = 'bootstrap'
 
-  require = __meteor_bootstrap__.require
-  path    = require 'path'
-  fs      = require 'fs'
-
-  base = path.resolve '.'
-  if base is '/'
-    base = path.dirname global.require.main.filename
-  
-  config = "#{base}/server/config/bootstrap" 
-  defaultUsers = if fs.existsSync(config) then require(config) else []
+  defaultUsers = DEFAULT_USER ? []
+  Meteor._debug("Default users: ",defaultUsers)
 
   Bootstrap =
     boot: ->
@@ -20,8 +12,10 @@ Bootstrap = do ->
         forbidClientAccountCreation: true
         
       # create default users  
+      Meteor._debug("Creating default users... currently active: ")
+      Meteor._debug Meteor.users.find().fetch()
+      
       defaultUsers.forEach (user) ->
-        Meteor._debug "Checking for bootstrap user #{user.username}"
         unless Meteor.users.find({username: user.username}).count() > 0
           Meteor._debug "Creating user #{user.username}"
   
