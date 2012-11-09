@@ -24,7 +24,7 @@
             </hgroup>
         </header>
         <section>
-            <div class="lead">{{#markdown}}{{intro}}{{/markdown}}</div>
+            <div class="lead">{{#markdown}}{{{intro}}}{{/markdown}}</div>
             <div class="dynamic-content">
                 {{#each dynamic_content}}
                 {{{get_content this}}}
@@ -44,11 +44,11 @@
 </template>
 
 <template name="article:paragraph">
-    {{#markdown}}{{content}}{{/markdown}}
+    {{#markdown}}{{{content}}}{{/markdown}}
 </template>
         
 <template name="article:image">
-    {{#markdown}}{{content}}{{/markdown}}
+    {{#markdown}}{{{content}}}{{/markdown}}
 </template>
 
 <template name="article:code">

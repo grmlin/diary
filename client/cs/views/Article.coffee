@@ -3,7 +3,7 @@ Template.article_content.helpers
     result = Template["article:#{content.type}"](content)
 
 Template.article_content.rendered = ->
-  this.findAll('code').forEach((el) ->
+  this.findAll('pre code').forEach((el) ->
     hljs.highlightBlock(el)
   )
      

@@ -33,6 +33,19 @@ body {
     clear: both;
 }
 
+.page-load-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8) url(/img/load.gif) no-repeat center;
+    z-index: 20;
+}
+.page-loaded .page-load-spinner {
+    display: none;
+    background: none;
+}
 #logo a {
     color: #333;
     text-decoration: none;
@@ -92,6 +105,26 @@ body {
 .content form .help-block {
     opacity: 0.6;
 }
+
+.content code {
+    color: #4A410D;
+}
+
+.content pre code {
+    color: #F8F8F8;
+}
+
+.content .lead code,
+#list article header p code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.content .lead code {
+    font-size: 19px;
+}
+
 
 .label.large-label {
     font-size: 14px;
