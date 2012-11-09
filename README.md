@@ -1,7 +1,7 @@
 # A Diary
 
 Simple blogging system build with meteor.  
-I'm using [here](http://diary.meteor.com/).
+I'm using it [here](http://diary.meteor.com/).
 
 ## Preparation
 
