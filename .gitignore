@@ -1,2 +1,4 @@
 .idea
 server/config/bootstrap.json
+
+server/config/bootstrap.js

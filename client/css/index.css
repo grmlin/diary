@@ -85,6 +85,13 @@ body {
     text-decoration: none !important;
 }
 
+.content form label {
+    font-weight: bold;
+}
+
+.content form .help-block {
+    opacity: 0.6;
+}
 
 .label.large-label {
     font-size: 14px;
