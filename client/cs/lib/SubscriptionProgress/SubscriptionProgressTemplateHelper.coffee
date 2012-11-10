@@ -1,5 +1,5 @@
 class SubscriptionProgressTemplateHelper
-  @DELAY: 1e3
+  @DELAY: 500
   constructor: (@_progress, @_templateName = "subscription_progress") ->
     
     unless typeof Template[@_templateName] isnt "function"
