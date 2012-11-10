@@ -98,6 +98,9 @@ body {
     text-decoration: none !important;
 }
 
+.content  a article.archived {
+    opacity: 0.5;
+}
 .content form label {
     font-weight: bold;
 }
@@ -118,7 +121,7 @@ body {
 #list article header p code {
     background: none;
     border: none;
-    padding: 0;
+    
 }
 
 .content .lead code {

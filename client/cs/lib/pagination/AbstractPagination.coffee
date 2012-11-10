@@ -1,3 +1,4 @@
+# TODO clean up pagination
 class AbstractPagination
   _countFetchDelay: null,
   constructor: (@collectionName, @countOptionsCb, @nPerPage = 10) ->
@@ -27,7 +28,7 @@ class AbstractPagination
     Meteor.call("getCollectionCount", @collectionName, @countOptionsCb(), (err, res) =>
       Meteor._debug(err) if err
       Meteor._debug "#{@collectionName} has #{res} items"
-      Session.set @sessionCountKey, res
+      @setCount res
     )
 
   _getPageNumber: ->
@@ -50,6 +51,9 @@ class AbstractPagination
 
   getCount: ->
     Session.get @sessionCountKey
+
+  setCount: (count) ->
+    Session.set @sessionCountKey, count
 
   next: ->
     page = @_getPageNumber()

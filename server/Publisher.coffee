@@ -2,14 +2,19 @@ Publisher =
   wirePublications: ->
     Meteor.publish "articles_list", (nPerPage, currentTagSlugs) ->
       selector = {}
+
+      if this.userId is null
+        selector.is_archived = no
+
       if currentTagSlugs
-        tags = Tags.find({slug:{$in:currentTagSlugs}})
+        tags = Tags.find({slug:
+          {$in: currentTagSlugs}})
         tagNames = []
         tags.forEach (tag) ->
           tagNames.push(tag.name)
-        selector = {tags: {$in : tagNames} }
-        
-        
+        selector.tags = {$in: tagNames}
+
+      console.log "selector", selector
       articles = Articles.find(selector,
         {
         fields:
@@ -28,6 +33,6 @@ Publisher =
         return articles
       else
         return null
-        
+
     Meteor.publish "tags", ->
       Tags.find()

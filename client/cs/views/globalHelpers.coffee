@@ -29,3 +29,6 @@ Handlebars.registerHelper 'current_tags', ->
   Tags.find
     slug:
       $in: appState.getSelectedTagSlugs() 
+
+Handlebars.registerHelper 'showed_article_count', ->
+  articlesPagination.getCount()

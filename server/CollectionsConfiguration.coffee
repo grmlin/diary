@@ -21,16 +21,15 @@ do ->
     # remove unused tags
     Tags.find().forEach((tag) ->
       console.log("Searching for tag #{tag.name}")
-      unless Articles.find({tags:tag.name}).count() > 0
+      unless Articles.find({tags: tag.name}).count() > 0
         Tags.remove(tag._id)
     )
-    
+
   # Update all tags
   Articles.find().forEach((doc)->
     updateTags(doc)
   )
-  
-  
+
 
   Articles.allow
     insert: (userId, doc) ->
@@ -39,29 +38,35 @@ do ->
       doc.user_name = Meteor.users.findOne(userId)?.username
       doc.slug = getArticleSlug(slugify(doc.title))
       doc.is_archived = false
-      
+
       if doc.tags
         doc.tags.forEach (tag, i) ->
           doc.tags[i] = _.string.trim(tag)
-          
-        updateTags(doc.tags) 
+
+        updateTags(doc.tags)
 
       userId and doc.title and doc.tags.length > 0 and doc.intro
 
     update: (userId, docs, fields, modifier) ->
       mod = modifier.$set
-
+      changeArchiveState = no
+      
       throw new Meteor.Error(500, "You can only change one article at a time!") if docs.length > 1
 
       #mod.slug = getArticleSlug(slugify(mod.title))
 
-      if mod.tags
+      console.log "is_archived: ", mod.is_archived
+      # archive?
+      if mod.is_archived is true or mod.is_archived is false
+        changeArchiveState = yes  
+      else if mod.tags
         mod.tags.forEach (tag, i) ->
           mod.tags[i] = _.string.trim(tag)
 
         updateTags(mod.tags)
 
-      userId and mod.title and mod.tags.length > 0 and mod.intro
+      console.log "allowing change: ", changeArchiveState  
+      userId and (changeArchiveState or (mod.title and mod.tags.length > 0 and mod.intro))
 
   query = Articles.find()
   handle = query.observe

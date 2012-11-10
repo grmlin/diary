@@ -7,3 +7,19 @@ Template.article_content.rendered = ->
     hljs.highlightBlock(el)
   )
      
+Template.article_content.events = 
+  "click .archive-article": (evt) ->
+    Articles.update(evt.currentTarget.value, {
+    $set:
+      {
+        is_archived: true
+      }
+    })
+
+  "click .publish-article": (evt) ->
+    Articles.update(evt.currentTarget.value, {
+    $set:
+      {
+      is_archived: false
+      }
+    })

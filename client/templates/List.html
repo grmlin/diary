@@ -2,15 +2,22 @@
     {{#if show_view "list,tag"}}
 
     {{#if show_view "list"}}
-    <!--<h2 class="page-header">available articles</h2>-->
+    <div class="pull-right muted"><span title="Currently showing {{showed_article_count}} articles">{{showed_article_count}}</span>
+    </div>
+
     {{else}}
-    <h4 class="page-header">articles tagged with 
-        {{#each current_tags}}
-        <span class="label label-inverse large-label">{{name}}</span>
-        {{/each}}
-    </h4>
+    <div class="page-header">
+        <div class="pull-right muted"><span title="Currently showing {{showed_article_count}} articles">{{showed_article_count}}</span>
+        </div>
+        <h4>
+            articles tagged with
+            {{#each current_tags}}
+            <span class="label label-inverse large-label">{{name}}</span>
+            {{/each}}
+        </h4>
+    </div>
     {{/if}}
-    <div id="list">
+    <div id="list" class="clear">
         {{#each articles}}
         {{> article_abstract}}
         {{/each}}
@@ -21,23 +28,28 @@
 
 <template name="article_abstract">
     <a href="/a/{{slug}}" class="internal-link">
-        <article>
-            <header>
-                <hgroup>
-                    <h6>
-                        {{user_name}}
-                        <small>{{datestring time}}</small>
-                    </h6>
-                    <h3>{{title}}
-                        <small>{{subtitle}}</small>
-                    </h3>
-                </hgroup>
-                <section>
-                    <div>
-                        {{#markdown}}{{{intro}}}{{/markdown}}
-                    </div>
-                </section>
-            </header>
-        </article>
+        {{#if is_archived}}
+        <p class="text-warning">archived article</p>
+        <article class="archived">
+            {{else}}
+            <article>
+                {{/if}}
+                <header>
+                    <hgroup>
+                        <h6>
+                            {{user_name}}
+                            <small>{{datestring time}}</small>
+                        </h6>
+                        <h3>{{title}}
+                            <small>{{subtitle}}</small>
+                        </h3>
+                    </hgroup>
+                    <section>
+                        <div>
+                            {{#markdown}}{{{intro}}}{{/markdown}}
+                        </div>
+                    </section>
+                </header>
+            </article>
     </a>
 </template>

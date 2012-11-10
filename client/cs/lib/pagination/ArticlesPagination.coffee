@@ -42,6 +42,13 @@ ArticlesPagination = do ->
           @listsLoading = yes
           @more()
 
+    _fetchCount: =>
+      Meteor.call("getArticlesCount", appState.getSelectedTagSlugs() ? null, (err, res) =>
+        Meteor._debug(err) if err
+        Meteor._debug "#{@collectionName} has #{res} items"
+        @setCount res
+      ) 
+      
     enableLazyLoading: () ->
       $win.on(ArticlesPagination.SCROLL_EVENT + ".#{@uid}", @_onScroll)
       @_onScroll()

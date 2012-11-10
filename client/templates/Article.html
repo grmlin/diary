@@ -9,6 +9,12 @@
 <template name="article_content">
     {{#with current_article}}
     <article>
+        {{#if is_archived}}
+        <div class="alert alert-block">
+            <h4>Archived!</h4>
+            This article is archived. Use the button on the right to publish it.
+        </div>
+        {{/if}}
         {{#if is_user}}
         {{> article_edit}}
         {{/if}}
@@ -46,9 +52,11 @@
 <template name="article:paragraph">
     {{#markdown}}{{{content}}}{{/markdown}}
 </template>
-        
+
 <template name="article:image">
+    {{#if content}}
     {{#markdown}}{{{content}}}{{/markdown}}
+    {{/if}}
 </template>
 
 <template name="article:code">
@@ -56,7 +64,16 @@
 </template>
 
 <template name="article_edit">
-    <div class="pull-right">
-        <a class="btn btn-mini internal-link" href="/p/{{slug}}"><i class="icon-pencil"></i></a>
+    <div class="pull-right btn-group">
+        <a class="btn btn-small internal-link" href="/p/{{slug}}"><i class="icon-pencil"></i></a>
+        {{#if is_archived}}
+        <button class="publish-article btn btn-small btn-info" value="{{_id}}"><i
+                class="icon-share icon-white"></i>
+        </button>
+        {{else}}
+        <button class="archive-article btn btn-small btn-warning" value="{{_id}}"><i
+                class="icon-ban-circle icon-white"></i>
+        </button>
+        {{/if}}
     </div>
 </template>

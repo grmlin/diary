@@ -11,10 +11,7 @@ Bootstrap = do ->
       Accounts.config
         forbidClientAccountCreation: true
         
-      # create default users  
-      Meteor._debug("Creating default users... currently active: ")
-      Meteor._debug Meteor.users.find().fetch()
-      
+      # create users from bootstrap
       defaultUsers.forEach (user) ->
         unless Meteor.users.find({username: user.username}).count() > 0
           Meteor._debug "Creating user #{user.username}"
