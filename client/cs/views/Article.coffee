@@ -1,25 +1,51 @@
-Template.article_content.helpers
-  get_content: (content) ->
-    result = Template["article:#{content.type}"](content)
+Meteor.View.create "article_content",
+  elements: 
+    "pre code": "codeBlocks"
 
-Template.article_content.rendered = ->
-  this.findAll('pre code').forEach((el) ->
-    hljs.highlightBlock(el)
-  )
-     
-Template.article_content.events = 
-  "click .archive-article": (evt) ->
+  helpers:
+    "get_content": "getContent"
+    
+  events:
+    "click h2": "onClick"
+    "click .archive-article": "onArchive"
+    "click .publish-article": "onPublish"
+
+  callbacks: 
+    rendered: "onRendered"
+  
+  # constructor 
+  initialize: ->
+    
+  # template helpers
+  getContent: (content) ->
+    Meteor._debug "view #{@name}#getContent"
+    result = Template["article:#{content.type}"](content)
+    
+  # event handling
+  onClick: (evt) ->
+    console.log evt
+    Meteor._debug "view #{@name} clicked"
+
+  onArchive: (evt) ->
     Articles.update(evt.currentTarget.value, {
     $set:
       {
-        is_archived: true
+      is_archived: true
       }
     })
 
-  "click .publish-article": (evt) ->
+  onPublish: (evt) ->
     Articles.update(evt.currentTarget.value, {
     $set:
       {
       is_archived: false
       }
     })
+
+  # template callbacks
+
+  onRendered: (template) ->
+    @codeBlocks.forEach((el) ->
+      hljs.highlightBlock(el)
+    )
+

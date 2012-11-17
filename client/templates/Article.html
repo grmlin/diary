@@ -1,9 +1,7 @@
 <template name="article">
-    {{#if show_view "article"}}
     <div id="article">
         {{> article_content}}
     </div>
-    {{/if}}
 </template>
 
 <template name="article_content">
@@ -32,9 +30,12 @@
         <section>
             <div class="lead">{{#markdown}}{{{intro}}}{{/markdown}}</div>
             <div class="dynamic-content">
-                {{#each dynamic_content}}
-                {{{get_content this}}}
-                {{/each}}
+                {{#if dynamic_content}}
+                    {{#each dynamic_content}}
+                    {{{get_content this}}}
+                    {{/each}}
+                {{else}}
+                {{/if}}
             </div>
         </section>
         <hr>

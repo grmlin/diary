@@ -23,10 +23,21 @@
             </p>
         </aside>
         <section class="content span7 offset1">
-            {{> list}}
-            {{> article}}
-            {{> produce}}
-            {{> not_found}}
+            {{#if show_view "list,tag"}}
+                {{> list}}
+            {{/if}}
+            
+            {{#if show_view "article"}}
+                {{> article}}
+            {{/if}}
+
+            {{#if show_view "admin_new,admin_edit"}}
+                {{> produce}}
+            {{/if}}
+
+            {{#if show_view "not_found"}}
+                {{> not_found}}
+            {{/if}}
         </section>
     </div>
 </div>

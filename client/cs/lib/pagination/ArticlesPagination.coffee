@@ -38,7 +38,6 @@ ArticlesPagination = do ->
         top = window.pageYOffset ? $win.scrollTop()
         isBottom = top + $win.height() >= $doc.height() - LAZY_OFFSET
         if isBottom
-          console.log "loading more ----- !!!111"
           @listsLoading = yes
           @more()
 

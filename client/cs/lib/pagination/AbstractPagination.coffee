@@ -20,7 +20,7 @@ class AbstractPagination
   _getCollectionCount: ->
     try
       Meteor.clearTimeout @_countFetchDelay
-      @_countFetchDelay = setTimeout(@_fetchCount, 500)
+      @_countFetchDelay = setTimeout(@_fetchCount, 150)
     catch e
       Meteor._debug("Counting #{@collectionName} failed: ", e)
 

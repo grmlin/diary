@@ -14,7 +14,6 @@ Publisher =
           tagNames.push(tag.name)
         selector.tags = {$in: tagNames}
 
-      console.log "selector", selector
       articles = Articles.find(selector,
         {
         fields:

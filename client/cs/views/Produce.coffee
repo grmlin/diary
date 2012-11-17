@@ -24,8 +24,8 @@ do ->
       else if appState.isState(appState.ADMIN_EDIT)
         editor.update(Articles)
 
-    "paste textarea": (evt) ->
+    "paste .dynamic-content textarea": (evt) ->
       growTextarea evt.currentTarget
 
-    "keyup textarea": (evt) ->
+    "keyup .dynamic-content textarea": (evt) ->
       growTextarea evt.currentTarget

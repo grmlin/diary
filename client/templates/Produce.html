@@ -1,12 +1,10 @@
 <template name="produce">
-    {{#if show_view "admin_new,admin_edit"}}
     {{#if is_user}}
     {{> entry_create_form}}
     {{else}}
     <div class="alert">
         <strong>Access forbidden!</strong> Please log in to add some content.
     </div>
-    {{/if}}
     {{/if}}
 </template>
 

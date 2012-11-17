@@ -1,6 +1,4 @@
 <template name="list">
-    {{#if show_view "list,tag"}}
-
     {{#if show_view "list"}}
     <div class="pull-right muted"><span title="Currently showing {{showed_article_count}} articles">{{showed_article_count}}</span>
     </div>
@@ -22,7 +20,6 @@
         {{> article_abstract}}
         {{/each}}
     </div>
-    {{/if}}
 </template>
 
 

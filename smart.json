@@ -4,5 +4,6 @@
     "branch": "master"
   },
   "packages": {
+    "view": {}
   }
 }

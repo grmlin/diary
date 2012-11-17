@@ -5,7 +5,15 @@
     "commit": "68dafc94c5f1eb6cf2350ee74e9f65130f665bc5"
   },
   "dependencies": {
-    "basePackages": {},
-    "packages": {}
+    "basePackages": {
+      "view": {}
+    },
+    "packages": {
+      "view": {
+        "git": "https://github.com/grmlin/meteor-view.git",
+        "tag": "v0.0.1",
+        "commit": "9a49e7cff6df654ff3853e429a67781dea3d5083"
+      }
+    }
   }
 }
