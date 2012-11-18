@@ -218,6 +218,10 @@ body > footer {
     position: relative;
 }
 
+#article-contents > li.deleted {
+    display: none;
+}
+
 /*
 #article-contents > li::before {
     content: "\00B6";

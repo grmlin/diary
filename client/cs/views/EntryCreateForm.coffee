@@ -68,7 +68,7 @@ do ->
 
     onDelete: (evt) ->
       evt.preventDefault()
-      evt.currentTarget.parentElement.parentElement.removeChild(evt.currentTarget.parentElement)
+      evt.currentTarget.parentElement.className += " deleted"
 
     onRendered: (tpl) ->
       if appState.isState(appState.ADMIN_EDIT)
@@ -90,19 +90,5 @@ do ->
         handle: ".handle"
         forcePlaceholderSize: true
         helper: "clone"
-
-  Template.entry_create_form.helpers
-    get_content: (content) ->
-      c = ""
-      switch content.type
-        when "paragraph"
-          c = "<li class='a-new-paragraph'>#{Template.paragraph_editor(content)}</li>"
-
-        when "image"
-          c = "<li class='a-new-image'>#{Template.image_editor(content)}</li>"
-
-        when "code"
-          c = "<li class='a-new-codesnippet' data-current='#{content.content.type}'>#{Template.code_editor(content)}</li>"
-      c
 
   createView = new CreateView("entry_create_form")

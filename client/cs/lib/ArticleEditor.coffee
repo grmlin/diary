@@ -8,7 +8,7 @@ class ArticleEditor
   getContentArray: ->
     result = []
 
-    elements = @view.querySelectorAll('.dynamic-content > li')
+    elements = @view.querySelectorAll('.dynamic-content:not(.deleted) > li')
 
     for node in elements
       content = ArticleContentFactory.getContent(node)
