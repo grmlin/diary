@@ -11,8 +11,8 @@
     "packages": {
       "view": {
         "git": "https://github.com/grmlin/meteor-view.git",
-        "tag": "v0.0.1",
-        "commit": "9a49e7cff6df654ff3853e429a67781dea3d5083"
+        "tag": "v0.1.0",
+        "commit": "a6bbf052f4ae501a7f739aa729939fe8a2336275"
       }
     }
   }

@@ -6,7 +6,7 @@ do ->
 
     return editable
 
-  Meteor.View.create "entry_create_form",
+  CreateView = Meteor.View.create 
     elements:
       "#article-contents": "dynamicContent"
       ".content-editor-actions > .btn-toolbar": "editorActions"
@@ -96,3 +96,4 @@ do ->
           c = "<li class='a-new-codesnippet' data-current='#{content.content.type}'>#{Template.code_editor(content)}</li>"
       c
 
+  createView = new CreateView("entry_create_form")

@@ -1,51 +1,48 @@
-Meteor.View.create "article_content",
-  elements: 
-    "pre code": "codeBlocks"
-
-  helpers:
-    "get_content": "getContent"
-    
-  events:
-    "click h2": "onClick"
-    "click .archive-article": "onArchive"
-    "click .publish-article": "onPublish"
-
-  callbacks: 
-    rendered: "onRendered"
+do ->
+  ArticleView = Meteor.View.create 
+    elements: 
+      "pre code": "codeBlocks"
   
-  # constructor 
-  initialize: ->
+    helpers:
+      "get_content": "getContent"
+      
+    events:
+      "click .archive-article": "onArchive"
+      "click .publish-article": "onPublish"
+  
+    callbacks: 
+      rendered: "onRendered"
     
-  # template helpers
-  getContent: (content) ->
-    Meteor._debug "view #{@name}#getContent"
-    result = Template["article:#{content.type}"](content)
-    
-  # event handling
-  onClick: (evt) ->
-    console.log evt
-    Meteor._debug "view #{@name} clicked"
-
-  onArchive: (evt) ->
-    Articles.update(evt.currentTarget.value, {
-    $set:
-      {
-      is_archived: true
-      }
-    })
-
-  onPublish: (evt) ->
-    Articles.update(evt.currentTarget.value, {
-    $set:
-      {
-      is_archived: false
-      }
-    })
-
-  # template callbacks
-
-  onRendered: (template) ->
-    @codeBlocks.forEach((el) ->
-      hljs.highlightBlock(el)
-    )
-
+    # constructor 
+    initialize: () ->
+      
+    # template helpers
+    getContent: (content) ->
+      result = Template["article:#{content.type}"](content)
+      
+    # event handling
+    onArchive: (evt) ->
+      Articles.update(evt.currentTarget.value, {
+      $set:
+        {
+        is_archived: true
+        }
+      })
+  
+    onPublish: (evt) ->
+      Articles.update(evt.currentTarget.value, {
+      $set:
+        {
+        is_archived: false
+        }
+      })
+  
+    # template callbacks
+  
+    onRendered: (template) ->
+      @codeBlocks.forEach((el) ->
+        hljs.highlightBlock(el)
+      )
+  
+  
+  article = new ArticleView("article_content")
