@@ -6,6 +6,9 @@ do ->
 
     return editable
 
+  scrollDown = ->
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    
   CreateView = Meteor.View.create 
     elements:
       "#article-contents": "dynamicContent"
@@ -40,6 +43,7 @@ do ->
       evt.preventDefault()
       editable = getItem "a-new-paragraph", Template.paragraph_editor
       @dynamicContent[0]?.appendChild(editable)
+      scrollDown()
 
     addCode: (evt) ->
       evt.preventDefault()
@@ -49,6 +53,8 @@ do ->
 
       dropdown = new LangDropdown($(editable.querySelector('.language-toggle')))
       $(editable).data("LangDropdown", dropdown)
+      
+      scrollDown()
 
     addImage: (evt) ->
       evt.preventDefault()
@@ -56,6 +62,9 @@ do ->
       editable = getItem "a-new-image", Template.image_editor
       @dynamicContent[0]?.appendChild(editable)
       editor = new ImageEditor(editable)
+
+      scrollDown()
+
 
     onDelete: (evt) ->
       evt.preventDefault()

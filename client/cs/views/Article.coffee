@@ -38,7 +38,6 @@ do ->
       })
   
     # template callbacks
-  
     onRendered: (template) ->
       @codeBlocks.forEach((el) ->
         hljs.highlightBlock(el)
